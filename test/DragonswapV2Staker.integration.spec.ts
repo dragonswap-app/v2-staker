@@ -58,6 +58,7 @@ describe('integration', async () => {
     const amountsToStake: [BigNumber, BigNumber] = [BNe18(1_000), BNe18(1_000)]
 
     const scenario: Fixture<TestSubject> = async (_wallets, _provider) => {
+
       const context = await dragonswapFixture(_wallets, _provider)
       const epoch = await blockTimestamp()
 
@@ -112,7 +113,6 @@ describe('integration', async () => {
     describe('who all stake the entire time ', () => {
       it('allows them all to withdraw at the end', async () => {
         const { helpers, createIncentiveResult } = subject
-
         await Time.setAndMine(createIncentiveResult.endTime + 1)
 
         // Sanity check: make sure we go past the incentive end time.
