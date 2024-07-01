@@ -232,7 +232,7 @@
 
 "@dragonswap/core@https://github.com/dragonswap-app/dragonswap-core":
   version "1.0.0"
-  resolved "https://github.com/dragonswap-app/dragonswap-core#dcfc54cf623a85d8d3cd9f416e5b10ca6cc16052"
+  resolved "https://github.com/dragonswap-app/dragonswap-core#9dff29ca7a10266338881132df8c7db70303c252"
   dependencies:
     "@commitlint/cli" "^17.0.3"
     "@commitlint/config-conventional" "^17.0.3"
@@ -253,7 +253,7 @@
 
 "@dragonswap/v2-periphery@git+ssh://git@github.com:dragonswap-app/v2-periphery.git":
   version "1.0.0"
-  resolved "git+ssh://git@github.com:dragonswap-app/v2-periphery.git#26d6e04fc515e1c6ca9f942dd0935d4ad4a2bffd"
+  resolved "git+ssh://git@github.com:dragonswap-app/v2-periphery.git#57af066cc2f80abdb7a04792c2f32a0030b2a179"
   dependencies:
     "@dragonswap/core" "https://github.com/dragonswap-app/dragonswap-core"
     "@dragonswap/v2-core" "git+ssh://git@github.com:dragonswap-app/v2-core.git"
@@ -9812,9 +9812,9 @@ qs@6.7.0:
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 qs@^6.4.0:
-  version "6.12.1"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.12.1.tgz#39422111ca7cbdb70425541cba20c7d7b216599a"
-  integrity sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ==
+  version "6.12.2"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.12.2.tgz#5443b587f3bf73ac68968de491e5b25bafe04478"
+  integrity sha512-x+NLUpx9SYrcwXtX7ob1gnkSems4i/mGZX5SlYxwIau6RrUSODO89TR/XDGGpn5RPWSYIB+aSfuSlV5+CmbTBg==
   dependencies:
     side-channel "^1.0.6"
 

@@ -95,7 +95,7 @@ export const dragonswapFactoryFixture: Fixture<DragonswapFactoryFixture> = async
           NFTDescriptor: [
             {
               length: 20,
-              start: 1681,
+              start: 1430,
             },
           ],
         },
@@ -111,7 +111,7 @@ export const dragonswapFactoryFixture: Fixture<DragonswapFactoryFixture> = async
     {
       bytecode: linkedBytecode,
       abi: NonfungibleTokenPositionDescriptor.abi,
-    },// 'FUNNYMONEY' as a bytes32 string
+    }, // 'FUNNYMONEY' as a bytes32 string
     [tokens[0].address, "0x46554e4e594d4f4e455900000000000000000000000000000000000000000000"]
   )
 
