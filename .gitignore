@@ -1,4 +1,3 @@
-artifacts/
 cache/
 crytic-export/
 node_modules/
@@ -6,3 +5,13 @@ typechain/
 *.code-workspace
 dist/
 coverage/
+
+artifacts/*
+!artifacts/contracts
+artifacts/contracts/*
+!artifacts/contracts/DragonswapV2Staker.sol
+artifacts/contracts/DragonswapV2Staker.sol/DragonswapV2Staker.dbg.json
+!artifacts/contracts/interfaces
+artifacts/contracts/interfaces/**/*.dbg.json
+!artifacts/contracts/libraries
+artifacts/contracts/libraries/**/*.dbg.json
