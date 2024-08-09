@@ -2,126 +2,101 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import {
-  ethers,
-  EventFilter,
-  Signer,
-  BigNumber,
-  BigNumberish,
-  PopulatedTransaction,
-} from "ethers";
-import {
-  Contract,
-  ContractTransaction,
-  Overrides,
-  PayableOverrides,
-  CallOverrides,
-} from "@ethersproject/contracts";
-import { BytesLike } from "@ethersproject/bytes";
-import { Listener, Provider } from "@ethersproject/providers";
-import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
+import { ethers, EventFilter, Signer, BigNumber, BigNumberish, PopulatedTransaction } from 'ethers'
+import { Contract, ContractTransaction, Overrides, PayableOverrides, CallOverrides } from '@ethersproject/contracts'
+import { BytesLike } from '@ethersproject/bytes'
+import { Listener, Provider } from '@ethersproject/providers'
+import { FunctionFragment, EventFragment, Result } from '@ethersproject/abi'
 
 interface ISwapRouterInterface extends ethers.utils.Interface {
   functions: {
-    "dragonswapV2SwapCallback(int256,int256,bytes)": FunctionFragment;
-    "exactInput(tuple)": FunctionFragment;
-    "exactInputSingle(tuple)": FunctionFragment;
-    "exactOutput(tuple)": FunctionFragment;
-    "exactOutputSingle(tuple)": FunctionFragment;
-  };
+    'dragonswapV2SwapCallback(int256,int256,bytes)': FunctionFragment
+    'exactInput(tuple)': FunctionFragment
+    'exactInputSingle(tuple)': FunctionFragment
+    'exactOutput(tuple)': FunctionFragment
+    'exactOutputSingle(tuple)': FunctionFragment
+  }
 
   encodeFunctionData(
-    functionFragment: "dragonswapV2SwapCallback",
+    functionFragment: 'dragonswapV2SwapCallback',
     values: [BigNumberish, BigNumberish, BytesLike]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "exactInput",
+    functionFragment: 'exactInput',
     values: [
       {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       }
     ]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "exactInputSingle",
+    functionFragment: 'exactInputSingle',
     values: [
       {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       }
     ]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "exactOutput",
+    functionFragment: 'exactOutput',
     values: [
       {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       }
     ]
-  ): string;
+  ): string
   encodeFunctionData(
-    functionFragment: "exactOutputSingle",
+    functionFragment: 'exactOutputSingle',
     values: [
       {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       }
     ]
-  ): string;
+  ): string
 
-  decodeFunctionResult(
-    functionFragment: "dragonswapV2SwapCallback",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "exactInput", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "exactInputSingle",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "exactOutput",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "exactOutputSingle",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: 'dragonswapV2SwapCallback', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'exactInput', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'exactInputSingle', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'exactOutput', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'exactOutputSingle', data: BytesLike): Result
 
-  events: {};
+  events: {}
 }
 
 export class ISwapRouter extends Contract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  on(event: EventFilter | string, listener: Listener): this;
-  once(event: EventFilter | string, listener: Listener): this;
-  addListener(eventName: EventFilter | string, listener: Listener): this;
-  removeAllListeners(eventName: EventFilter | string): this;
-  removeListener(eventName: any, listener: Listener): this;
+  on(event: EventFilter | string, listener: Listener): this
+  once(event: EventFilter | string, listener: Listener): this
+  addListener(eventName: EventFilter | string, listener: Listener): this
+  removeAllListeners(eventName: EventFilter | string): this
+  removeListener(eventName: any, listener: Listener): this
 
-  interface: ISwapRouterInterface;
+  interface: ISwapRouterInterface
 
   functions: {
     dragonswapV2SwapCallback(
@@ -129,229 +104,229 @@ export class ISwapRouter extends Contract {
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "dragonswapV2SwapCallback(int256,int256,bytes)"(
+    'dragonswapV2SwapCallback(int256,int256,bytes)'(
       amount0Delta: BigNumberish,
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     exactInput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "exactInput(tuple)"(
+    'exactInput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     exactInputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "exactInputSingle(tuple)"(
+    'exactInputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     exactOutput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "exactOutput(tuple)"(
+    'exactOutput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
     exactOutputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
+    ): Promise<ContractTransaction>
 
-    "exactOutputSingle(tuple)"(
+    'exactOutputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<ContractTransaction>;
-  };
+    ): Promise<ContractTransaction>
+  }
 
   dragonswapV2SwapCallback(
     amount0Delta: BigNumberish,
     amount1Delta: BigNumberish,
     data: BytesLike,
     overrides?: Overrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "dragonswapV2SwapCallback(int256,int256,bytes)"(
+  'dragonswapV2SwapCallback(int256,int256,bytes)'(
     amount0Delta: BigNumberish,
     amount1Delta: BigNumberish,
     data: BytesLike,
     overrides?: Overrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   exactInput(
     params: {
-      path: BytesLike;
-      recipient: string;
-      deadline: BigNumberish;
-      amountIn: BigNumberish;
-      amountOutMinimum: BigNumberish;
+      path: BytesLike
+      recipient: string
+      deadline: BigNumberish
+      amountIn: BigNumberish
+      amountOutMinimum: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "exactInput(tuple)"(
+  'exactInput(tuple)'(
     params: {
-      path: BytesLike;
-      recipient: string;
-      deadline: BigNumberish;
-      amountIn: BigNumberish;
-      amountOutMinimum: BigNumberish;
+      path: BytesLike
+      recipient: string
+      deadline: BigNumberish
+      amountIn: BigNumberish
+      amountOutMinimum: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   exactInputSingle(
     params: {
-      tokenIn: string;
-      tokenOut: string;
-      fee: BigNumberish;
-      recipient: string;
-      deadline: BigNumberish;
-      amountIn: BigNumberish;
-      amountOutMinimum: BigNumberish;
-      sqrtPriceLimitX96: BigNumberish;
+      tokenIn: string
+      tokenOut: string
+      fee: BigNumberish
+      recipient: string
+      deadline: BigNumberish
+      amountIn: BigNumberish
+      amountOutMinimum: BigNumberish
+      sqrtPriceLimitX96: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "exactInputSingle(tuple)"(
+  'exactInputSingle(tuple)'(
     params: {
-      tokenIn: string;
-      tokenOut: string;
-      fee: BigNumberish;
-      recipient: string;
-      deadline: BigNumberish;
-      amountIn: BigNumberish;
-      amountOutMinimum: BigNumberish;
-      sqrtPriceLimitX96: BigNumberish;
+      tokenIn: string
+      tokenOut: string
+      fee: BigNumberish
+      recipient: string
+      deadline: BigNumberish
+      amountIn: BigNumberish
+      amountOutMinimum: BigNumberish
+      sqrtPriceLimitX96: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   exactOutput(
     params: {
-      path: BytesLike;
-      recipient: string;
-      deadline: BigNumberish;
-      amountOut: BigNumberish;
-      amountInMaximum: BigNumberish;
+      path: BytesLike
+      recipient: string
+      deadline: BigNumberish
+      amountOut: BigNumberish
+      amountInMaximum: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "exactOutput(tuple)"(
+  'exactOutput(tuple)'(
     params: {
-      path: BytesLike;
-      recipient: string;
-      deadline: BigNumberish;
-      amountOut: BigNumberish;
-      amountInMaximum: BigNumberish;
+      path: BytesLike
+      recipient: string
+      deadline: BigNumberish
+      amountOut: BigNumberish
+      amountInMaximum: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   exactOutputSingle(
     params: {
-      tokenIn: string;
-      tokenOut: string;
-      fee: BigNumberish;
-      recipient: string;
-      deadline: BigNumberish;
-      amountOut: BigNumberish;
-      amountInMaximum: BigNumberish;
-      sqrtPriceLimitX96: BigNumberish;
+      tokenIn: string
+      tokenOut: string
+      fee: BigNumberish
+      recipient: string
+      deadline: BigNumberish
+      amountOut: BigNumberish
+      amountInMaximum: BigNumberish
+      sqrtPriceLimitX96: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
-  "exactOutputSingle(tuple)"(
+  'exactOutputSingle(tuple)'(
     params: {
-      tokenIn: string;
-      tokenOut: string;
-      fee: BigNumberish;
-      recipient: string;
-      deadline: BigNumberish;
-      amountOut: BigNumberish;
-      amountInMaximum: BigNumberish;
-      sqrtPriceLimitX96: BigNumberish;
+      tokenIn: string
+      tokenOut: string
+      fee: BigNumberish
+      recipient: string
+      deadline: BigNumberish
+      amountOut: BigNumberish
+      amountInMaximum: BigNumberish
+      sqrtPriceLimitX96: BigNumberish
     },
     overrides?: PayableOverrides
-  ): Promise<ContractTransaction>;
+  ): Promise<ContractTransaction>
 
   callStatic: {
     dragonswapV2SwapCallback(
@@ -359,117 +334,117 @@ export class ISwapRouter extends Contract {
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
-    "dragonswapV2SwapCallback(int256,int256,bytes)"(
+    'dragonswapV2SwapCallback(int256,int256,bytes)'(
       amount0Delta: BigNumberish,
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<void>
 
     exactInput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactInput(tuple)"(
+    'exactInput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactInputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactInputSingle(tuple)"(
+    'exactInputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactOutput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactOutput(tuple)"(
+    'exactOutput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactOutputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactOutputSingle(tuple)"(
+    'exactOutputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
-  filters: {};
+  filters: {}
 
   estimateGas: {
     dragonswapV2SwapCallback(
@@ -477,115 +452,115 @@ export class ISwapRouter extends Contract {
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "dragonswapV2SwapCallback(int256,int256,bytes)"(
+    'dragonswapV2SwapCallback(int256,int256,bytes)'(
       amount0Delta: BigNumberish,
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactInput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactInput(tuple)"(
+    'exactInput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactInputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactInputSingle(tuple)"(
+    'exactInputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactOutput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactOutput(tuple)"(
+    'exactOutput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
     exactOutputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
+    ): Promise<BigNumber>
 
-    "exactOutputSingle(tuple)"(
+    'exactOutputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<BigNumber>;
-  };
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     dragonswapV2SwapCallback(
@@ -593,113 +568,113 @@ export class ISwapRouter extends Contract {
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "dragonswapV2SwapCallback(int256,int256,bytes)"(
+    'dragonswapV2SwapCallback(int256,int256,bytes)'(
       amount0Delta: BigNumberish,
       amount1Delta: BigNumberish,
       data: BytesLike,
       overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     exactInput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "exactInput(tuple)"(
+    'exactInput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     exactInputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "exactInputSingle(tuple)"(
+    'exactInputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountIn: BigNumberish;
-        amountOutMinimum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountIn: BigNumberish
+        amountOutMinimum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     exactOutput(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "exactOutput(tuple)"(
+    'exactOutput(tuple)'(
       params: {
-        path: BytesLike;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
+        path: BytesLike
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
     exactOutputSingle(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
+    ): Promise<PopulatedTransaction>
 
-    "exactOutputSingle(tuple)"(
+    'exactOutputSingle(tuple)'(
       params: {
-        tokenIn: string;
-        tokenOut: string;
-        fee: BigNumberish;
-        recipient: string;
-        deadline: BigNumberish;
-        amountOut: BigNumberish;
-        amountInMaximum: BigNumberish;
-        sqrtPriceLimitX96: BigNumberish;
+        tokenIn: string
+        tokenOut: string
+        fee: BigNumberish
+        recipient: string
+        deadline: BigNumberish
+        amountOut: BigNumberish
+        amountInMaximum: BigNumberish
+        sqrtPriceLimitX96: BigNumberish
       },
       overrides?: PayableOverrides
-    ): Promise<PopulatedTransaction>;
-  };
+    ): Promise<PopulatedTransaction>
+  }
 }

@@ -58,7 +58,6 @@ describe('integration', async () => {
     const amountsToStake: [BigNumber, BigNumber] = [BNe18(1_000), BNe18(1_000)]
 
     const scenario: Fixture<TestSubject> = async (_wallets, _provider) => {
-
       const context = await dragonswapFixture(_wallets, _provider)
       const epoch = await blockTimestamp()
 

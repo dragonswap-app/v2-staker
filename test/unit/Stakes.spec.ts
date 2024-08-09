@@ -159,7 +159,9 @@ describe('unit/Stakes', () => {
       it('deposit is already staked in the incentive', async () => {
         await Time.set(timestamps.startTime + 500)
         await subject(tokenId, lpUser0)
-        await expect(subject(tokenId, lpUser0)).to.be.revertedWith('DragonswapV2Staker::stakeToken: token already staked')
+        await expect(subject(tokenId, lpUser0)).to.be.revertedWith(
+          'DragonswapV2Staker::stakeToken: token already staked'
+        )
       })
 
       it('you are not the owner of the deposit', async () => {
@@ -269,7 +271,9 @@ describe('unit/Stakes', () => {
           throw new Error('no good')
         }
         await Time.set(timestamps.startTime - 2)
-        await expect(subject(tokenId, lpUser0)).to.be.revertedWith('DragonswapV2Staker::stakeToken: incentive not started')
+        await expect(subject(tokenId, lpUser0)).to.be.revertedWith(
+          'DragonswapV2Staker::stakeToken: incentive not started'
+        )
       })
     })
   })
@@ -615,7 +619,9 @@ describe('unit/Stakes', () => {
       it('non-owner tries to unstake before the end time', async () => {
         const nonOwner = actors.lpUser2()
         await Time.setAndMine(timestamps.startTime + 100)
-        await expect(subject(nonOwner)).to.revertedWith('DragonswapV2Staker::unstakeToken: only owner can withdraw token')
+        await expect(subject(nonOwner)).to.revertedWith(
+          'DragonswapV2Staker::unstakeToken: only owner can withdraw token'
+        )
         expect(await blockTimestamp(), 'test setup: after end time').to.be.lt(timestamps.endTime)
       })
     })

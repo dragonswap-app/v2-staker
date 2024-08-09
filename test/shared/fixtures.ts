@@ -112,7 +112,7 @@ export const dragonswapFactoryFixture: Fixture<DragonswapFactoryFixture> = async
       bytecode: linkedBytecode,
       abi: NonfungibleTokenPositionDescriptor.abi,
     }, // 'FUNNYMONEY' as a bytes32 string
-    [tokens[0].address, "0x46554e4e594d4f4e455900000000000000000000000000000000000000000000"]
+    [tokens[0].address, '0x46554e4e594d4f4e455900000000000000000000000000000000000000000000']
   )
 
   const nftFactory = new ethers.ContractFactory(
@@ -214,7 +214,6 @@ export type DragonswapFixtureType = {
   rewardToken: TestERC20
 }
 export const dragonswapFixture: Fixture<DragonswapFixtureType> = async (wallets, provider) => {
-
   const { tokens, nft, factory, router } = await dragonswapFactoryFixture(wallets, provider)
   const signer = new ActorFixture(wallets, provider).stakerDeployer()
   const stakerFactory = await ethers.getContractFactory('DragonswapV2Staker', signer)
