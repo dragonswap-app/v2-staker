@@ -17,8 +17,8 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@dragonswap/v2-core": "git+ssh://git@github.com:dragonswap-app/v2-core.git",
-    "@dragonswap/v2-periphery": "git+ssh://git@github.com:dragonswap-app/v2-periphery.git",
+    "@dragonswap/v2-core": "https://github.com/dragonswap-app/v2-core",
+    "@dragonswap/v2-periphery": "https://github.com/dragonswap-app/v2-periphery",
     "@openzeppelin/contracts": "3.4.1-solc-0.7-2"
   },
   "devDependencies": {
