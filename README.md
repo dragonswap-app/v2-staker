@@ -1,6 +1,9 @@
 # dragonswap-v2-staker
 
-This is the canonical staking contract for [Dragonswap V2](https://github.com/dragonswap-app/v2-core).
+[![Tests](https://github.com/dragonswap-app/v2-staker/workflows/Tests/badge.svg)](https://github.com/dragonswap-app/v2-staker/actions?query=workflow%3ATests)
+[![Lint](https://github.com/dragonswap-app/v2-staker/workflows/Lint/badge.svg)](https://github.com/dragonswap-app/v2-staker/actions?query=workflow%3ALint)
+
+This is the staking contract for [Dragonswap V2](https://github.com/dragonswap-app/v2-core).
 
 ## Links
 
