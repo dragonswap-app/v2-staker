@@ -29,7 +29,7 @@ jobs:
             yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-engines
 
       - name: Lint
         run: yarn prettier:check
