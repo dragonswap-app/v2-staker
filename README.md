@@ -5,6 +5,7 @@ This is the canonical staking contract for [Dragonswap V2](https://github.com/dr
 ## Links
 
 - [Contract Design](docs/Design.md)
+- [Audit](https://github.com/dragonswap-app/v2-core/blob/main/audits/20240801_Paladin_DragonSwapDEX_Final_Report.pdf)
 
 ## Development and Testing
 
