@@ -31,6 +31,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
+      - name: Create temporary .env file
+        run: |
+          echo "KEY_MAINNET=0000000000000000000000000000000000000000000000000000000000000000" >> .env
+          echo "KEY_TESTNET=0000000000000000000000000000000000000000000000000000000000000000" >> .env
+
       # This is required separately from yarn test because it generates the typechain definitions
       - name: Compile
         run: yarn compile
