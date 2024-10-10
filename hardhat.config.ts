@@ -38,7 +38,7 @@ if (process.env.RUN_COVERAGE == '1') {
 
 const seiTestnet: NetworkUserConfig = {
   url: "https://evm-rpc-testnet.sei-apis.com",
-  chainId: 713715,
+  chainId: 1328,
   accounts: [process.env.KEY_TESTNET!],
 };
 

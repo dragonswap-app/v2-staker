@@ -1,6 +1,6 @@
 import { ethers, network, run } from "hardhat";
 import config from "../config";
-import { jsons, sleep } from "./utils";
+import { jsons, sleep, getJson } from "./utils";
 
 const wait = async () => {
   await sleep(3000);
@@ -25,14 +25,17 @@ const main = async () => {
       dragonswapV2StakerAddress,
     );
 
-    // Load the latest incentive details
-    const latestIncentive = {
-      rewardToken: config.Address.RewardToken[networkName],
-      pool: config.Address.Pool[networkName],
-      startTime: config.StartTime[networkName],
-      endTime: config.EndTime[networkName],
-      refundee: config.Address.Refundee[networkName]
-    };
+    // // Load the incentive to end details from config
+    // const latestIncentive = {
+    //   rewardToken: config.Address.RewardToken[networkName],
+    //   pool: config.Address.Pool[networkName],
+    //   startTime: config.StartTime[networkName],
+    //   endTime: config.EndTime[networkName],
+    //   refundee: config.Address.Refundee[networkName]
+    // };
+
+    // Load the latest incentive details from incentives.json
+    const latestIncentive = getJson(jsons.incentives)[networkName]["LatestIncentive"];
 
     // Create the incentive key
     const incentiveKey = {
@@ -55,7 +58,10 @@ const main = async () => {
     const refundEvent = endIncentiveTxReceipt.events?.find(e => e.event === "IncentiveEnded");
     const refundAmount = refundEvent?.args?.refund;
 
-    console.log("Refund amount:", ethers.utils.formatUnits(refundAmount, config.RewardTokenDecimals[networkName]));
+    const rewardTokenContract = await ethers.getContractAt("Token", latestIncentive.rewardToken);
+    const rewardTokenDecimals = await rewardTokenContract.decimals();
+
+    console.log("Refund amount:", ethers.utils.formatUnits(refundAmount, rewardTokenDecimals));
 
   } else {
     console.log(`Ending incentive on ${networkName} network is not supported...`);

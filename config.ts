@@ -5,33 +5,29 @@ export default {
         testnet: "",
       },
       Refundee: {
-        mainnet: "",
+        mainnet: "0x328f7689244Bd7D042c4aE9eC18077b6781D6Dd8",
         testnet: "",
       },
       Pool: {
-        mainnet: "",
+        mainnet: "0x7EF8B9bE08bF6694C4844a3388e80B3419a9f803",
         testnet: "",
       },
       RewardToken: {
-        mainnet: "",
+        mainnet: "0xB75D0B03c06A926e488e2659DF1A861F860bD3d1",
         testnet: "",
       },
     },
     StartTime: {
-      mainnet: 172800,
+      mainnet: 1728561006,
       testnet: 172800,
     },
     EndTime: {
-      mainnet: 172800,
+      mainnet: 1728561306,
       testnet: 172800,
     },
     RewardAmount: {
-      mainnet: 1000,
+      mainnet: 1,
       testnet: 1000,
-    },
-    RewardTokenDecimals: {
-      mainnet: 18,
-      testnet: 18,
     },
   };
   

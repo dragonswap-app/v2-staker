@@ -41,9 +41,6 @@ const main = async () => {
     const endTime = config.EndTime[networkName]; // End time (7 days after start)
     const refundee = refundeeAddress; // Address to receive leftover rewards
 
-    const rewardTokenDecimals = config.RewardTokenDecimals[networkName];
-    const rewardAmount = parseUnits(config.RewardAmount[networkName].toString(), rewardTokenDecimals);
-
     // Create the incentive key
     const incentiveKey = {
       rewardToken,
@@ -54,10 +51,13 @@ const main = async () => {
     };
 
     // Approve the DragonswapV2Staker contract to spend reward tokens
-    const rewardTokenContract = await ethers.getContractAt("IERC20", rewardToken);
+    const rewardTokenContract = await ethers.getContractAt("Token", rewardToken);
+    const rewardTokenDecimals = await rewardTokenContract.decimals();
+    const rewardAmount = parseUnits(config.RewardAmount[networkName].toString(), rewardTokenDecimals);
     await rewardTokenContract.approve(dragonswapV2StakerAddress, rewardAmount);
 
     await wait();
+
     // Create the incentive
     const createIncentiveTx = await dragonswapV2Staker.createIncentive(
       incentiveKey,
@@ -70,7 +70,7 @@ const main = async () => {
 
     // Save the incentive details
     saveJson(
-      jsons.addresses,
+      jsons.incentives,
       network.name,
       "LatestIncentive",
       {

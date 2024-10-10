@@ -9,6 +9,7 @@ const jsons: Record<string, string> = {
   addresses: "addresses.json",
   config: "config.json",
   abis: "abis.json",
+  incentives: "incentives.json",
 };
 
 function getJson(file: string): Record<string, any> {
