@@ -16,10 +16,10 @@ const main = async () => {
     console.log(`Creating incentive on ${networkName} network...`);
 
     const zeroAddress = ethers.constants.AddressZero;
-    const refundeeAddress = config.Address.Refundee[networkName];
+    const refundeeAddress = config.refundee[networkName];
 
     // Check if the addresses in the config are set.
-    if (refundeeAddress === zeroAddress) {
+    if (refundeeAddress === zeroAddress || refundeeAddress === null || refundeeAddress === "") {
       throw new Error("Missing refundee address");
     }
 
@@ -27,7 +27,7 @@ const main = async () => {
     await run("compile");
     console.log("Compiled contracts...");
 
-    const dragonswapV2StakerAddress = config.Address.DragonswapV2Staker[networkName];
+    const dragonswapV2StakerAddress = config.dragonswapV2Staker[networkName];
 
     const dragonswapV2Staker = await ethers.getContractAt(
       "DragonswapV2Staker",
@@ -35,10 +35,10 @@ const main = async () => {
     );
 
     // Define incentive parameters
-    const rewardToken = config.Address.RewardToken[networkName]; // Address of the reward token
-    const pool = config.Address.Pool[networkName]; // Address of the Dragonswap V2 pool
-    const startTime = config.StartTime[networkName]; // Start time
-    const endTime = config.EndTime[networkName]; // End time
+    const rewardToken = config.rewardToken[networkName]; // Address of the reward token
+    const pool = config.pool[networkName]; // Address of the Dragonswap V2 pool
+    const startTime = config.startTime[networkName]; // Start time
+    const endTime = config.endTime[networkName]; // End time
     const refundee = refundeeAddress; // Address to receive leftover rewards
 
     // Create the incentive key
@@ -53,7 +53,7 @@ const main = async () => {
     // Approve the DragonswapV2Staker contract to spend reward tokens
     const rewardTokenContract = await ethers.getContractAt("Token", rewardToken);
     const rewardTokenDecimals = await rewardTokenContract.decimals();
-    const rewardAmount = parseUnits(config.RewardAmount[networkName].toString(), rewardTokenDecimals);
+    const rewardAmount = parseUnits(config.rewardAmount[networkName].toString(), rewardTokenDecimals);
     await rewardTokenContract.approve(dragonswapV2StakerAddress, rewardAmount);
 
     await wait();
@@ -72,7 +72,7 @@ const main = async () => {
     saveJson(
       jsons.incentives,
       network.name,
-      "LatestIncentive",
+      "latestIncentive",
       {
         rewardToken,
         pool,

@@ -18,32 +18,29 @@ const main = async () => {
     await run("compile");
     console.log("Compiled contracts...");
 
-    const dragonswapV2StakerAddress = config.Address.DragonswapV2Staker[networkName];
+    const dragonswapV2StakerAddress = config.dragonswapV2Staker[networkName];
 
     const dragonswapV2Staker = await ethers.getContractAt(
       "DragonswapV2Staker",
       dragonswapV2StakerAddress,
     );
 
-    // // Load the incentive to end details from config
-    // const latestIncentive = {
-    //   rewardToken: config.Address.RewardToken[networkName],
-    //   pool: config.Address.Pool[networkName],
-    //   startTime: config.StartTime[networkName],
-    //   endTime: config.EndTime[networkName],
-    //   refundee: config.Address.Refundee[networkName]
-    // };
-
-    // Load the latest incentive details from incentives.json
-    const latestIncentive = getJson(jsons.incentives)[networkName]["LatestIncentive"];
+    // Load the incentive to end details from config
+    const incentiveFromConfing = {
+      rewardToken: config.rewardToken[networkName],
+      pool: config.pool[networkName],
+      startTime: config.startTime[networkName],
+      endTime: config.endTime[networkName],
+      refundee: config.refundee[networkName]
+    };
 
     // Create the incentive key
     const incentiveKey = {
-      rewardToken: latestIncentive.rewardToken,
-      pool: latestIncentive.pool,
-      startTime: latestIncentive.startTime,
-      endTime: latestIncentive.endTime,
-      refundee: latestIncentive.refundee
+      rewardToken: incentiveFromConfing.rewardToken,
+      pool: incentiveFromConfing.pool,
+      startTime: incentiveFromConfing.startTime,
+      endTime: incentiveFromConfing.endTime,
+      refundee: incentiveFromConfing.refundee
     };
 
     await wait();
@@ -58,7 +55,7 @@ const main = async () => {
     const refundEvent = endIncentiveTxReceipt.events?.find(e => e.event === "IncentiveEnded");
     const refundAmount = refundEvent?.args?.refund;
 
-    const rewardTokenContract = await ethers.getContractAt("Token", latestIncentive.rewardToken);
+    const rewardTokenContract = await ethers.getContractAt("Token", incentiveFromConfing.rewardToken);
     const rewardTokenDecimals = await rewardTokenContract.decimals();
 
     console.log("Refund amount:", ethers.utils.formatUnits(refundAmount, rewardTokenDecimals));

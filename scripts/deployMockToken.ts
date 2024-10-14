@@ -1,14 +1,18 @@
-import { getJson, saveJson, jsons } from './utils';
+import { saveJson, jsons } from './utils';
 import { ethers , network, run } from "hardhat";
 
 
 async function main() {
-    // Compile contracts.
-    await run("compile");
-    console.log("Compiled contracts...");
+  // Compile contracts.
+  await run("compile");
+  console.log("Compiled contracts...");
+
+  const name = "MockToken";
+  const symbol = "MTKN";
+  const decimals = 6;
 
   const mockTokenFactory = await ethers.getContractFactory('Token');
-  const mockToken = await mockTokenFactory.deploy();
+  const mockToken = await mockTokenFactory.deploy(name, symbol, decimals);
   await mockToken.deployed();
   console.log(`MockToken address: ${mockToken.address}`);
 
