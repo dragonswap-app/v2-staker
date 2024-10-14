@@ -15,3 +15,6 @@ artifacts/contracts/DragonswapV2Staker.sol/DragonswapV2Staker.dbg.json
 artifacts/contracts/interfaces/**/*.dbg.json
 !artifacts/contracts/libraries
 artifacts/contracts/libraries/**/*.dbg.json
+
+# env
+.env
