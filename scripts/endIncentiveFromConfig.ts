@@ -34,18 +34,9 @@ const main = async () => {
       refundee: config.refundee[networkName]
     };
 
-    // Create the incentive key
-    const incentiveKey = {
-      rewardToken: incentiveFromConfing.rewardToken,
-      pool: incentiveFromConfing.pool,
-      startTime: incentiveFromConfing.startTime,
-      endTime: incentiveFromConfing.endTime,
-      refundee: incentiveFromConfing.refundee
-    };
-
     await wait();
     // End the incentive
-    const endIncentiveTx = await dragonswapV2Staker.endIncentive(incentiveKey);
+    const endIncentiveTx = await dragonswapV2Staker.endIncentive(incentiveFromConfing);
 
     const endIncentiveTxReceipt = await endIncentiveTx.wait();
 
