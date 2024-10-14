@@ -8,6 +8,8 @@ import { SolcUserConfig, NetworkUserConfig } from 'hardhat/types'
 import 'solidity-coverage'
 import "dotenv/config";
 
+const accounts = process.env.PK ? [process.env.PK] : [];
+
 const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
   version: '0.7.6',
   settings: {
@@ -39,13 +41,13 @@ if (process.env.RUN_COVERAGE == '1') {
 const seiTestnet: NetworkUserConfig = {
   url: "https://evm-rpc-testnet.sei-apis.com",
   chainId: 1328,
-  accounts: [process.env.KEY_TESTNET!],
+  accounts: accounts,
 };
 
 const seiMainnet: NetworkUserConfig = {
   url: "https://evm-rpc.sei-apis.com",
   chainId: 1329,
-  accounts: [process.env.KEY_MAINNET!],
+  accounts: accounts,
 };
 
 const config: HardhatUserConfig = {

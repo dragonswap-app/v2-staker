@@ -37,8 +37,8 @@ const main = async () => {
     // Define incentive parameters
     const rewardToken = config.Address.RewardToken[networkName]; // Address of the reward token
     const pool = config.Address.Pool[networkName]; // Address of the Dragonswap V2 pool
-    const startTime = config.StartTime[networkName]; // Start time (1 hour from now)
-    const endTime = config.EndTime[networkName]; // End time (7 days after start)
+    const startTime = config.StartTime[networkName]; // Start time
+    const endTime = config.EndTime[networkName]; // End time
     const refundee = refundeeAddress; // Address to receive leftover rewards
 
     // Create the incentive key

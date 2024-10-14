@@ -5,29 +5,29 @@ export default {
         testnet: "",
       },
       Refundee: {
-        mainnet: "0x328f7689244Bd7D042c4aE9eC18077b6781D6Dd8",
+        mainnet: "",
         testnet: "",
       },
       Pool: {
-        mainnet: "0x7EF8B9bE08bF6694C4844a3388e80B3419a9f803",
+        mainnet: "",
         testnet: "",
       },
       RewardToken: {
-        mainnet: "0xB75D0B03c06A926e488e2659DF1A861F860bD3d1",
+        mainnet: "",
         testnet: "",
       },
     },
     StartTime: {
-      mainnet: 1728561006,
-      testnet: 172800,
+      mainnet: 0,
+      testnet: 0,
     },
     EndTime: {
-      mainnet: 1728561306,
-      testnet: 172800,
+      mainnet: 0,
+      testnet: 0,
     },
     RewardAmount: {
-      mainnet: 1,
-      testnet: 1000,
+      mainnet: 0, // Amount is converted to decimals of the reward token in the script
+      testnet: 0,
     },
   };
   
