@@ -26,7 +26,7 @@ const main = async () => {
     );
 
     // Load the incentive to end details from config
-    const incentiveFromConfing = {
+    const incentiveFromConfig = {
       rewardToken: config.rewardToken[networkName],
       pool: config.pool[networkName],
       startTime: config.startTime[networkName],
@@ -36,7 +36,7 @@ const main = async () => {
 
     await wait();
     // End the incentive
-    const endIncentiveTx = await dragonswapV2Staker.endIncentive(incentiveFromConfing);
+    const endIncentiveTx = await dragonswapV2Staker.endIncentive(incentiveFromConfig);
 
     const endIncentiveTxReceipt = await endIncentiveTx.wait();
 
@@ -46,7 +46,7 @@ const main = async () => {
     const refundEvent = endIncentiveTxReceipt.events?.find(e => e.event === "IncentiveEnded");
     const refundAmount = refundEvent?.args?.refund;
 
-    const rewardTokenContract = await ethers.getContractAt("Token", incentiveFromConfing.rewardToken);
+    const rewardTokenContract = await ethers.getContractAt("Token", incentiveFromConfig.rewardToken);
     const rewardTokenDecimals = await rewardTokenContract.decimals();
 
     console.log("Refund amount:", ethers.utils.formatUnits(refundAmount, rewardTokenDecimals));
